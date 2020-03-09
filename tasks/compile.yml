@@ -15,18 +15,15 @@
   args:
     chdir: "{{ __flameshot_source_dir }}"
     creates: "{{ __flameshot_compiled_binary }}"
-  become: false
 
 - name: "Run make"
   make:
     chdir: "{{ __flameshot_source_dir }}"
-  become: false
 
 - name: "Run make install"
   make:
     chdir: "{{ __flameshot_source_dir }}"
     target: "install"
-  become: true
 
 - name: "Remove git source repo from {{ __flameshot_source_dir }}"
   file:
