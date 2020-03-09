@@ -1,0 +1,18 @@
+---
+__flameshot_package: "flameshot"
+__flameshot_runtime_dependencies:
+  - "libqt5dbus5"
+  - "libqt5network5"
+  - "libqt5core5a"
+  - "libqt5widgets5"
+  - "libqt5gui5"
+  - "libqt5svg5-dev"
+__flameshot_compilation_dependencies:
+  - "git"
+  - "g++"
+  - "build-essential"
+  - "qt5-qmake"
+  - "qt5-default"
+  - "qttools5-dev-tools"
+__flameshot_source_dir: "/tmp/flameshot_source_code"
+__flameshot_compiled_binary: "/usr/local/bin/flameshot"

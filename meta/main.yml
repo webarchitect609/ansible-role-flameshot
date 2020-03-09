@@ -1,0 +1,17 @@
+---
+dependencies: []
+galaxy_info:
+  role_name: flameshot
+  author: Gripinskiy Sergey
+  description: Installs Flameshot or compiles it from the source code.
+  company:
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+
+  galaxy_tags:
+    - flameshot

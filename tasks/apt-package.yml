@@ -1,0 +1,22 @@
+---
+- name: "Refresh apt sources list."
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: "Ensure runtime dependencies are installed."
+  apt:
+    name: "{{ __flameshot_runtime_dependencies }}"
+    state: "present"
+
+- name: "Install package {{ __flameshot_package }}."
+  apt:
+    name: "{{ __flameshot_package }}"
+    state: "present"
+  when: not flameshot_compile
+
+- name: "Remove package {{ __flameshot_package }} when compiling."
+  apt:
+    name: "{{ __flameshot_package }}"
+    state: "absent"
+  when: flameshot_compile

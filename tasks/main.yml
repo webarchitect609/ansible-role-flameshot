@@ -1,0 +1,14 @@
+---
+- include_tasks: apt-package.yml
+
+- name: "Check if Flameshot is installed."
+  command: "which {{ __flameshot_package }}"
+  changed_when: false
+  failed_when: false
+  register: flameshot_installed
+
+- name: "Compile {{ __flameshot_package }}."
+  include_tasks: compile.yml
+  when:
+    - flameshot_compile
+    - flameshot_installed.rc != 0

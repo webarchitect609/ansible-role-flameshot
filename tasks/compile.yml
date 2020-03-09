@@ -1,0 +1,34 @@
+---
+- name: "Ensure compilation dependencies are installed."
+  apt:
+    name: "{{ __flameshot_compilation_dependencies }}"
+    state: "present"
+
+- name: "Clone git source repo at {{ flameshot_compile_version }}"
+  git:
+    repo: "{{ flameshot_source_repo }}"
+    dest: "{{ __flameshot_source_dir }}"
+    version: "{{ flameshot_compile_version }}"
+
+- name: "Run qmake"
+  command: qmake
+  args:
+    chdir: "{{ __flameshot_source_dir }}"
+    creates: "{{ __flameshot_compiled_binary }}"
+  become: false
+
+- name: "Run make"
+  make:
+    chdir: "{{ __flameshot_source_dir }}"
+  become: false
+
+- name: "Run make install"
+  make:
+    chdir: "{{ __flameshot_source_dir }}"
+    target: "install"
+  become: true
+
+- name: "Remove git source repo from {{ __flameshot_source_dir }}"
+  file:
+    path: "{{ __flameshot_source_dir }}"
+    state: "absent"

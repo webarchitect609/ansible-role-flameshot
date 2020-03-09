@@ -1,0 +1,4 @@
+---
+flameshot_compile: false
+flameshot_compile_version: master
+flameshot_source_repo: "https://github.com/lupoDharkael/flameshot.git"
