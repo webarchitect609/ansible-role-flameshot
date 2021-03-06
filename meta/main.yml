@@ -5,7 +5,7 @@ galaxy_info:
   author: Gripinskiy Sergey
   description: Installs Flameshot or compiles it from the source code.
   company:
-  license: MIT
+  license: BSD-3-Clause
   min_ansible_version: 2.4
   platforms:
     - name: Ubuntu
@@ -15,3 +15,4 @@ galaxy_info:
 
   galaxy_tags:
     - flameshot
+    - screenshot
