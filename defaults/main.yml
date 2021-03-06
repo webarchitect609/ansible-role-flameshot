@@ -1,4 +1,4 @@
 ---
 flameshot_compile: false
-flameshot_compile_version: master
+flameshot_compile_version: v0.6.0
 flameshot_source_repo: "https://github.com/lupoDharkael/flameshot.git"

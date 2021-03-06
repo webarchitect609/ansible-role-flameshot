@@ -7,8 +7,11 @@ __flameshot_runtime_dependencies:
   - "libqt5widgets5"
   - "libqt5gui5"
   - "libqt5svg5-dev"
-__flameshot_compilation_dependencies:
+  # Optional dependencies
   - "git"
+  - "openssl"
+  - "ca-certificates"
+__flameshot_compilation_dependencies:
   - "g++"
   - "build-essential"
   - "qt5-qmake"
