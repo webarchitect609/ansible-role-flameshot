@@ -1,6 +1,7 @@
 ---
 dependencies: []
 galaxy_info:
+  namespace: webarchitect609
   role_name: flameshot
   author: Gripinskiy Sergey
   description: Installs Flameshot or compiles it from the source code.
