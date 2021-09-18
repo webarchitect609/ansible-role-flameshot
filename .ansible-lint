@@ -3,6 +3,8 @@ skip_list:
   - 'risky-shell-pipe'
   - 'no-handler'
   - 'role-name'
+  - 'git-latest'
+  - 'command-instead-of-module'
 
 exclude_paths:
   - .github/

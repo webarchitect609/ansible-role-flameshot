@@ -5,6 +5,8 @@ name: build
   push:
     branches:
       - '**'
+  schedule:
+    - cron: "0 5 15 * *"
 
 defaults:
   run:
@@ -41,8 +43,6 @@ jobs:
       matrix:
         include:
           - distro: ubuntu2004
-            playbook: converge.yml
-          - distro: ubuntu1804
             playbook: converge.yml
 
     steps:

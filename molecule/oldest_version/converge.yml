@@ -1,10 +1,10 @@
 ---
-- name: Converge
+- name: Converge compile
   hosts: all
   become: true
 
   vars:
-    flameshot_compile: true
+    flameshot_compile_version: "v0.8.0"
 
   roles:
     - role: webarchitect609.flameshot

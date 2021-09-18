@@ -1,6 +1,15 @@
 Changelog
 =========
 
+2.0.0
+-----
+
+### BREAKING CHANGES
+
+- `Flameshot` will be compiled from the source at latest stable version and set to run at startup by default;
+- any `apt` or `snap` versions of `Flameshot` will be uninstalled before compiling from the source;
+- only `Flameshot > 0.6.0` at `Ubuntu 20.04 LTS Focal Fosa` is supported so far.
+
 1.0.2
 -----
 

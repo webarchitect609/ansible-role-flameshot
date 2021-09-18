@@ -1,4 +1,5 @@
 ---
-flameshot_compile: false
-flameshot_compile_version: v0.6.0
+flameshot_compile: true
+flameshot_compile_version: "latest-stable"
 flameshot_source_repo: "https://github.com/lupoDharkael/flameshot.git"
+flameshot_enable_autostart: true

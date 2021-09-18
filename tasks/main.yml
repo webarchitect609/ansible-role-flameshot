@@ -1,14 +1,40 @@
 ---
-- include_tasks: apt-package.yml
 
-- name: "Check if Flameshot is installed."
-  command: "which {{ __flameshot_package }}"
+- name: "Refresh apt sources list."
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: "Ensure runtime dependencies are installed."
+  apt:
+    name: "{{ __flameshot_runtime_dependencies }}"
+    state: "present"
+
+- name: "Install apt package."
+  apt:
+    name: "{{ __flameshot_package }}"
+    state: "present"
+  when: not flameshot_compile
+
+- block:
+
+    - include_tasks: check_installed_version.yml
+
+    - include_tasks: version_expansion.yml
+      when: flameshot_compile_version == "latest-stable"
+
+    - name: "Installed is {{ __flameshot_installed_version }}, compile is {{ flameshot_compile_version }}"
+      include_tasks: compile.yml
+      when: flameshot_compile_version != __flameshot_installed_version
+
+    - name: "Clear git repo clone."
+      file:
+        path: "{{ __flameshot_source_dir }}"
+        state: absent
+      changed_when: false
+
+  when: flameshot_compile
+
+- name: "Enable or disable run at startup"
+  command: flameshot config --autostart "{{ flameshot_enable_autostart }}"
   changed_when: false
-  failed_when: false
-  register: flameshot_installed
-
-- name: "Compile {{ __flameshot_package }}."
-  include_tasks: compile.yml
-  when:
-    - flameshot_compile
-    - flameshot_installed.rc != 0

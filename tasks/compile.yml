@@ -1,31 +1,56 @@
 ---
+
 - name: "Ensure compilation dependencies are installed."
   apt:
     name: "{{ __flameshot_compilation_dependencies }}"
     state: "present"
 
-- name: "Clone git source repo at {{ flameshot_compile_version }}"
+- name: "Remove apt package {{ __flameshot_package }}."
+  apt:
+    name: "{{ __flameshot_package }}"
+    state: "absent"
+
+- name: "Gather installed packages in search for Snap."
+  package_facts:
+    manager: apt
+
+- name: "Remove snap package {{ __flameshot_package }}."
+  snap:
+    name: "{{ __flameshot_package }}"
+    state: "absent"
+  when: >
+    'snapd' in ansible_facts.packages
+
+- name: "Ensure git source repo clone will be OK."
+  file:
+    path: "{{ __flameshot_source_dir }}"
+    state: absent
+
+- name: "Clone git source repo at {{ flameshot_compile_version }}."
   git:
     repo: "{{ flameshot_source_repo }}"
     dest: "{{ __flameshot_source_dir }}"
     version: "{{ flameshot_compile_version }}"
 
-- name: "Run qmake"
-  command: qmake
-  args:
-    chdir: "{{ __flameshot_source_dir }}"
-    creates: "{{ __flameshot_compiled_binary }}"
-
-- name: "Run make"
-  make:
-    chdir: "{{ __flameshot_source_dir }}"
-
-- name: "Run make install"
-  make:
-    chdir: "{{ __flameshot_source_dir }}"
-    target: "install"
-
-- name: "Remove git source repo from {{ __flameshot_source_dir }}"
+- name: "Ensure there is a build dir in source repo clone."
   file:
-    path: "{{ __flameshot_source_dir }}"
-    state: "absent"
+    path: "{{ __flameshot_build_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: "cmake"
+  shell: |
+    cd "{{ __flameshot_build_dir }}" \
+    && cmake ../
+  # just for ansible-lint
+  changed_when: true
+
+- name: "make"
+  make:
+    chdir: "{{ __flameshot_build_dir }}"
+
+- name: "make install"
+  make:
+    chdir: "{{ __flameshot_build_dir }}"
+    target: "install"
+  become: true
