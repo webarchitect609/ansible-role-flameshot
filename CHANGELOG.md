@@ -9,6 +9,10 @@ Changelog
 - version checking before apt and snap packages uninstallation led to skip compile when the same version is installed
   via snap or apt.
 
+### Changed
+
+- print the state of startup flag.
+
 2.0.0
 -----
 

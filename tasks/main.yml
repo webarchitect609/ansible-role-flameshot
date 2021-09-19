@@ -38,6 +38,7 @@
 
   when: flameshot_compile
 
-- name: "Enable or disable run at startup"
+- name: "Set run at startup to {{ flameshot_enable_autostart }}"
   command: flameshot config --autostart "{{ flameshot_enable_autostart }}"
-  changed_when: false
+  register: flameshot_config_autostart
+  changed_when: "flameshot_config_autostart.rc != 0"
