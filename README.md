@@ -6,7 +6,7 @@ Ansible Role: Flameshot
 [![License](https://img.shields.io/github/license/webarchitect609/ansible-role-flameshot)](LICENSE.md)
 [![More stuff from me](https://img.shields.io/badge/galaxy-webarchitect609-000)](https://galaxy.ansible.com/webarchitect609)
 
-Compiles [Flameshot](https://flameshot.js.org) ≥ `0.8.0`
+Compiles [Flameshot](https://flameshot.org/) ≥ `0.8.0`
 from [the source code](https://github.com/lupoDharkael/flameshot) and installs it. Or just installs apt package.
 
 Requirements
