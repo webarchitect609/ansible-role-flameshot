@@ -18,6 +18,9 @@
 
 - block:
 
+    - name: "Remove installed apt and snap {{ __flameshot_package }} packages before checking the installed version."
+      include_tasks: remove_apt_and_snap_installations.yml
+
     - include_tasks: check_installed_version.yml
 
     - include_tasks: version_expansion.yml

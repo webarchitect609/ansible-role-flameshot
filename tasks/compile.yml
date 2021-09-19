@@ -5,22 +5,6 @@
     name: "{{ __flameshot_compilation_dependencies }}"
     state: "present"
 
-- name: "Remove apt package {{ __flameshot_package }}."
-  apt:
-    name: "{{ __flameshot_package }}"
-    state: "absent"
-
-- name: "Gather installed packages in search for Snap."
-  package_facts:
-    manager: apt
-
-- name: "Remove snap package {{ __flameshot_package }}."
-  snap:
-    name: "{{ __flameshot_package }}"
-    state: "absent"
-  when: >
-    'snapd' in ansible_facts.packages
-
 - name: "Ensure git source repo clone will be OK."
   file:
     path: "{{ __flameshot_source_dir }}"

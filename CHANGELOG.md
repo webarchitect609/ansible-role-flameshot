@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.0.1
+-----
+
+### Fixed
+
+- version checking before apt and snap packages uninstallation led to skip compile when the same version is installed
+  via snap or apt.
+
 2.0.0
 -----
 
