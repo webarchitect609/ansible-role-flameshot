@@ -13,7 +13,10 @@
   changed_when: false
 
 - name: "Find latest stable release version."
-  shell: git -C "{{ __flameshot_source_dir }}" tag --list "v*" --sort "-v:refname" | head -n 1
+  shell: >
+    git -C "{{ __flameshot_source_dir }}" tag --list "v*" --sort "-v:refname"
+    | grep -P "^v\d+\.\d+\.\d+$"
+    | head -n 1
   register: latest_stable
   # just for ansible-lint
   changed_when: false

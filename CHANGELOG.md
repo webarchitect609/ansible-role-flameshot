@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.0.2
+-----
+
+### Fixed:
+    
+- latest stable release version could be release-candidate like `v11.0.rc1` due to poor tag filtering;
+- installed version check was broken since v11.0.0 `flameshot --version` output goes to stderr, not stdout.
+
 2.0.1
 -----
 
