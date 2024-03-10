@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.1.0
+-----
+
+### Fixed:
+
+- compile time dependencies were too specific and worked only on Ubuntu 20.04 LTS
+
 2.0.2
 -----
 
