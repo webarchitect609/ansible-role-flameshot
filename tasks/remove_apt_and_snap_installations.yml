@@ -1,16 +1,16 @@
 ---
 
-- name: "Remove apt package {{ __flameshot_package }} or it will break version checking."
-  apt:
+- name: "Remove apt package {{ __flameshot_package }}"
+  ansible.builtin.apt:
     name: "{{ __flameshot_package }}"
     state: "absent"
 
-- name: "Gather installed apt packages in search for Snap."
-  package_facts:
+- name: "Gather installed apt packages in search for Snap"
+  ansible.builtin.package_facts:
     manager: apt
 
-- name: "Remove snap package {{ __flameshot_package }} or it will break version checking."
-  snap:
+- name: "Remove snap package {{ __flameshot_package }}"
+  community.general.snap:
     name: "{{ __flameshot_package }}"
     state: "absent"
   when: >

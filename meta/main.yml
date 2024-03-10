@@ -5,13 +5,18 @@ galaxy_info:
   role_name: flameshot
   author: Gripinskiy Sergey
   description: Installs Flameshot or compiles it from the source code.
-  company:
+  company: ''
   license: BSD-3-Clause
-  min_ansible_version: 2.4
+  min_ansible_version: '2.1'
   platforms:
     - name: Ubuntu
       versions:
+        # 22.04 LTS
+        - jammy
+        # 20.04 LTS
         - focal
+        # 18.04 LTS
+        - bionic
 
   galaxy_tags:
     - flameshot

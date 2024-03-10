@@ -1,40 +1,40 @@
 ---
 
-- name: "Ensure compilation dependencies are installed."
-  apt:
+- name: "Ensure compilation dependencies are installed"
+  ansible.builtin.apt:
     name: "{{ __flameshot_compilation_dependencies }}"
     state: "present"
 
-- name: "Ensure git source repo clone will be OK."
-  file:
+- name: "Ensure git source repo clone will be OK"
+  ansible.builtin.file:
     path: "{{ __flameshot_source_dir }}"
     state: absent
 
-- name: "Clone git source repo at {{ flameshot_compile_version }}."
-  git:
+- name: "Clone git source repo at {{ flameshot_compile_version }}"
+  ansible.builtin.git:
     repo: "{{ flameshot_source_repo }}"
     dest: "{{ __flameshot_source_dir }}"
     version: "{{ flameshot_compile_version }}"
 
-- name: "Ensure there is a build dir in source repo clone."
-  file:
+- name: "Ensure there is a build dir in source repo clone"
+  ansible.builtin.file:
     path: "{{ __flameshot_build_dir }}"
     state: directory
     mode: '0755'
 
-- name: "cmake"
-  shell: |
+- name: "Cmake"
+  ansible.builtin.shell: |
     cd "{{ __flameshot_build_dir }}" \
     && cmake ../
   # just for ansible-lint
   changed_when: true
 
-- name: "make"
-  make:
+- name: "Make"
+  community.general.make:
     chdir: "{{ __flameshot_build_dir }}"
 
-- name: "make install"
-  make:
+- name: "Make install"
+  community.general.make:
     chdir: "{{ __flameshot_build_dir }}"
     target: "install"
   become: true
