@@ -15,8 +15,6 @@ galaxy_info:
         - jammy
         # 20.04 LTS
         - focal
-        # 18.04 LTS
-        - bionic
 
   galaxy_tags:
     - flameshot

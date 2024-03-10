@@ -4,6 +4,10 @@ Changelog
 2.1.0
 -----
 
+### BREAKING CHANGES
+
+- `Ubuntu 18.04 LTS Bionic Beaver` support removed.
+
 ### Fixed:
 
 - compile time dependencies were too specific and worked only on Ubuntu 20.04 LTS
